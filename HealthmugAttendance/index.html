@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: url('login-form-image.webp') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 350px;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .input-box {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 12px 40px 12px 12px;
+            border: none;
+            border-bottom: 1px solid #000;
+            outline: none;
+            background: transparent;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .input-box .icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            color: #000;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .options a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #5a8fff, #3a6fe0);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #3a6fe0, #5a8fff);
+        }
+
+        .register {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .register a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Error message */
+        .error {
+            color: red;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>LOGIN</h2>
+        <form id="loginForm">
+            <div id="errorMsg" class="error"></div>
+            <div class="input-box">
+                <input type="email" id="email" placeholder="Email" required>
+                <span class="icon">📧</span>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="icon">👁️</span>
+            </div>
+            <div class="options">
+                <label><input type="checkbox"> Remember Me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="register">
+                Don’t have an Account? <a href="#">Register</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const correctEmail = "akash.singh@healthmug.com";
+        const correctPassword = "Akash@12345";
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
+
+            if (email !== correctEmail) {
+                errorMsg.textContent = "❌ Wrong Email";
+            } else if (password !== correctPassword) {
+                errorMsg.textContent = "❌ Wrong Password";
+            } else {
+                errorMsg.textContent = "";
+                localStorage.setItem("isLoggedIn", "true"); 
+                window.location.href = "/attendance";
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
